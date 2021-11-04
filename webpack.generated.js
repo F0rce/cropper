@@ -25,7 +25,7 @@ const themePartRegex = /(\\|\/)themes\1[\s\S]*?\1/;
 const frontendFolder = require('path').resolve(__dirname, 'frontend');
 
 const fileNameOfTheFlowGeneratedMainEntryPoint = require('path').resolve(__dirname, 'target/frontend/generated-flow-imports.js');
-const mavenOutputFolderForFlowBundledFiles = require('path').resolve(__dirname, 'target/classes/META-INF/VAADIN');
+const mavenOutputFolderForFlowBundledFiles = require('path').resolve(__dirname, '');
 
 const devmodeGizmoJS = '@vaadin/flow-frontend/VaadinDevmodeGizmo.js'
 
@@ -47,7 +47,7 @@ const projectStaticAssetsFolders = [
   frontendFolder
 ];
 
-const projectStaticAssetsOutputFolder = require('path').resolve(__dirname, 'target/classes/META-INF/VAADIN/static');
+const projectStaticAssetsOutputFolder = require('path').resolve(__dirname, '../VAADIN/static');
 
 // Folders in the project which can contain application themes
 const themeProjectFolders = projectStaticAssetsFolders.map((folder) =>
@@ -95,20 +95,22 @@ if (watchDogPort) {
 }
 
 const flowFrontendThemesFolder = path.resolve(flowFrontendFolder, 'themes');
+const frontendGeneratedFolder = path.resolve(frontendFolder, "generated");
 const themeOptions = {
   devMode: devMode,
-  // The following matches target/frontend/themes/theme-generated.js
+  // The following matches ./frontend/generated/theme.js
   // and for theme in JAR that is copied to target/frontend/themes/
   themeResourceFolder: flowFrontendThemesFolder,
   themeProjectFolders: themeProjectFolders,
   projectStaticAssetsOutputFolder: projectStaticAssetsOutputFolder,
+  frontendGeneratedFolder: frontendGeneratedFolder
 };
 let themeName = undefined;
 let themeWatchFolders = undefined;
 if (devMode) {
-  // Current theme name is being extracted from theme-generated.js located in
-  // target/frontend/themes folder
-  themeName = extractThemeName(flowFrontendThemesFolder);
+  // Current theme name is being extracted from theme.js located in
+  // frontend/generated folder
+  themeName = extractThemeName(frontendGeneratedFolder);
   const parentThemePaths = findParentThemes(themeName, themeOptions);
   const currentThemeFolders = [...projectStaticAssetsFolders
     .map((folder) => path.resolve(folder, "themes", themeName)),
@@ -179,10 +181,15 @@ module.exports = {
 
   module: {
     rules: [
-      {
+      ...(transpile ? [
+        {
+        test: /\.tsx?$/,
+        use: [ BabelMultiTargetPlugin.loader(), 'ts-loader' ],
+      }
+      ] : [{
         test: /\.tsx?$/,
         use: ['ts-loader']
-      },
+      }]),
       ...(transpile ? [{ // Files that Babel has to transpile
         test: /\.js$/,
         use: [BabelMultiTargetPlugin.loader()]
@@ -306,7 +313,8 @@ module.exports = {
     // have its own loader based on browser quirks.
     new CopyWebpackPlugin([{
       from: `${baseDir}/node_modules/@webcomponents/webcomponentsjs`,
-      to: `${build}/webcomponentsjs/`
+      to: `${build}/webcomponentsjs/`,
+      ignore: ['*.md', '*.json']
     }]),
   ]
 };

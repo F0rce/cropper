@@ -85,7 +85,9 @@ public class Cropper extends Component implements HasSize {
 	}
 
 	/**
-	 * Returns the cropped image uri as Base64 encoded byte array.
+	 * Returns the cropped image uri as Base64 encoded byte array. If the image uri
+	 * does not contain "image/*;base64," the uri will just be decoded to not throw
+	 * a null pointer exception.
 	 * 
 	 * @return byte[]
 	 */
@@ -94,6 +96,9 @@ public class Cropper extends Component implements HasSize {
 			return null;
 		}
 		String split = imageUri.split(",")[1];
+		if (split.length() == 0) {
+			return Base64.getDecoder().decode(this.imageUri.getBytes(StandardCharsets.UTF_8));
+		}
 		return Base64.getDecoder().decode(split.getBytes(StandardCharsets.UTF_8));
 	}
 
