@@ -17,7 +17,7 @@ import de.f0rce.cropper.settings.CropperSettings;
 
 @Tag("lit-cropper")
 @JsModule("./@f0rce/lit-cropper/lit-cropper.js")
-@NpmPackage(value = "cropperjs", version = "1.5.11")
+@NpmPackage(value = "cropperjs", version = "1.5.12")
 public class Cropper extends Component implements HasSize {
 
   /** */
