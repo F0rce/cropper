@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"de.f0rce.cropper.events"},{"l":"de.f0rce.cropper.settings"},{"l":"de.f0rce.cropper.settings.enums"}]
