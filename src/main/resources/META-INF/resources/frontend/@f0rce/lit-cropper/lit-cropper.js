@@ -359,7 +359,7 @@ class LitCropper extends LitElement {
 
   render() {
     return html`<div id="img-container" style="height: 100%; width: 100%">
-      <img id="image" class="" />
+      <img id="image" />
     </div>`;
   }
 
@@ -441,6 +441,7 @@ class LitCropper extends LitElement {
             detail: {},
           })
         );
+        _this.imageEncode();
       },
       cropend() {
         _this.imageEncode();
