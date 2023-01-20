@@ -446,6 +446,9 @@ class LitCropper extends LitElement {
       cropend() {
         _this.imageEncode();
       },
+      crop() {
+        _this.imageEncode();
+      },
     });
   }
 
