@@ -206,3 +206,8 @@ temp/
 ### Vaadin ###
 .vaadin-designer
 .designer
+
+# vs-code history
+.history
+
+
