@@ -1,4 +1,4 @@
-package dev.onepub.ui.widgets;
+package de.f0rce.cropper.widgets;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
