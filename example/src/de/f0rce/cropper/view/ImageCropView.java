@@ -1,4 +1,4 @@
-package de.f0rce.cropper.settings.example;
+package de.f0rce.cropper.example;
 
 import java.util.LinkedList;
 import java.util.List;
