@@ -19,6 +19,9 @@ Install the component using [Vaadin Directory](https://vaadin.com/directory/comp
 
 [docs.f0rce.de/cropper](https://docs.f0rce.de/cropper)
 
+## Example
+Check the example folder for an example Vaadin view that uses cropper.
+
 
 ## License
 

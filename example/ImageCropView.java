@@ -34,31 +34,32 @@ public class ImageCropView extends VerticalLayout
 	 */
 	protected void build()
 	{
-		var croppableImage = new CroppableImage(
+		var builder = new CroppableImageBuilder(
 				() -> fetchImage(), "image/png");
-		croppableImage.setId(generatedImage.buildSwatchS3Key(this.category, includeVersion));
-		croppableImage.setViewMode(ViewMode.ONE);
-		croppableImage.setAspectRatio(0.0);
-		croppableImage.setInitialAspectRatio(GeneratedImage.SWATCH_HEIGHT / GeneratedImage.SWATCH_WIDTH);
-		croppableImage.setScalable(false);
-		croppableImage.setZoomable(false);
-		croppableImage.setMinCropBoxWidth(ImageRequest.DEFAULT_WIDTH);
-		croppableImage.setMinCropBoxHeight(ImageRequest.DEFAULT_HEIGHT);
+		builder.setId(generatedImage.buildSwatchS3Key(this.category, includeVersion));
+		builder.setViewMode(ViewMode.ONE);
+		builder.setAspectRatio(0.0);
+		builder.setInitialAspectRatio(GeneratedImage.SWATCH_HEIGHT / GeneratedImage.SWATCH_WIDTH);
+		builder.setScalable(false);
+		builder.setZoomable(false);
+		builder.setMinCropBoxWidth(ImageRequest.DEFAULT_WIDTH);
+		builder.setMinCropBoxHeight(ImageRequest.DEFAULT_HEIGHT);
 		
 
+		var copper = builder.build();
 		 Button cropButton = new Button("crop", e -> {
 			/// Displayed the cropped image.
 			var  image = cropper.getImage();
 			add(image);
 		});
 
-		return croppableImage;
+		add(cropper, cropButton);
 
 	}
 
 	InputStream fetchImage() {
 		/// load the image from a file or the network and return it
-		/// as an input stream.
+		/// as an input stream of bytes
 	}
 	
 }
