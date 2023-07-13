@@ -13,7 +13,8 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import de.f0rce.cropper.settings.enums.ViewMode;
-import dev.onepub.ui.wizard.CroppableImage;
+import de.f0rce.cropper.CroppableImage;
+import de.f0rce.cropper.CroppableImageBuilder;
 
 @Route(value = ImageCropView.NAME)
 public class ImageCropView extends VerticalLayout
