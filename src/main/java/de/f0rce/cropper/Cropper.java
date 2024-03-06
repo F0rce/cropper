@@ -1,7 +1,5 @@
 package de.f0rce.cropper;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasSize;
@@ -9,13 +7,17 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.shared.Registration;
+
 import de.f0rce.cropper.events.CropperImageEncodeEvent;
 import de.f0rce.cropper.events.CropperReadyEvent;
 import de.f0rce.cropper.settings.CropperSettings;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 @Tag("lit-cropper")
 @JsModule("./@f0rce/lit-cropper/lit-cropper.js")
-@NpmPackage(value = "cropperjs", version = "1.5.13")
+@NpmPackage(value = "cropperjs", version = "1.6.1")
 public class Cropper extends Component implements HasSize {
 
   /** */
