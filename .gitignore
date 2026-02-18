@@ -206,3 +206,5 @@ temp/
 ### Vaadin ###
 .vaadin-designer
 .designer
+frontend/generated/
+.vscode/
